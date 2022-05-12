@@ -49,7 +49,8 @@ func TestEgressWildcard(t *testing.T) {
 		util.KubeApplyContents("bookinfo", EgressWildcardEntry)
 		time.Sleep(time.Duration(10) * time.Second)
 
-		command := `curl -s https://en.wikipedia.org/wiki/Main_Page | grep -o "<title>.*</title>"; curl -s https://de.wikipedia.org/wiki/Wikipedia:Hauptseite | grep -o "<title>.*</title>"`
+		//command := `curl -s https://en.wikipedia.org/wiki/Main_Page | grep -o "<title>.*</title>"; curl -s https://de.wikipedia.org/wiki/Wikipedia:Hauptseite | grep -o "<title>.*</title>"`
+		command := `sh -c "curl -s https://en.wikipedia.org/wiki/Main_Page | grep -o '<title>.*</title>'; curl -s https://de.wikipedia.org/wiki/Wikipedia:Hauptseite | grep -o '<title>.*</title>'"`
 		msg, err := util.PodExec("bookinfo", sleepPod, "sleep", command, false)
 		util.Inspect(err, "Failed to get response", "", t)
 		if strings.Contains(msg, "<title>Wikipedia, the free encyclopedia</title>\n<title>Wikipedia – Die freie Enzyklopädie</title>") {
@@ -61,7 +62,7 @@ func TestEgressWildcard(t *testing.T) {
 
 		util.KubeDeleteContents("bookinfo", EgressWildcardEntry)
 	})
-
+        
 	t.Run("TrafficManagement_egress_gateway_wildcard_host", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 
@@ -69,7 +70,8 @@ func TestEgressWildcard(t *testing.T) {
 		util.KubeApplyContents("bookinfo", util.RunTemplate(EgressWildcardGatewayTemplate, smcp))
 		time.Sleep(time.Duration(10) * time.Second)
 
-		command := `curl -s https://en.wikipedia.org/wiki/Main_Page | grep -o "<title>.*</title>"; curl -s https://de.wikipedia.org/wiki/Wikipedia:Hauptseite | grep -o "<title>.*</title>"`
+		//command := `curl -s https://en.wikipedia.org/wiki/Main_Page | grep -o "<title>.*</title>"; curl -s https://de.wikipedia.org/wiki/Wikipedia:Hauptseite | grep -o "<title>.*</title>"`
+		command := `sh -c "curl -s https://en.wikipedia.org/wiki/Main_Page | grep -o '<title>.*</title>'; curl -s https://de.wikipedia.org/wiki/Wikipedia:Hauptseite | grep -o '<title>.*</title>'"`
 		msg, err := util.PodExec("bookinfo", sleepPod, "sleep", command, false)
 		util.Inspect(err, "Failed to get response", "", t)
 		if strings.Contains(msg, "<title>Wikipedia, the free encyclopedia</title>\n<title>Wikipedia – Die freie Enzyklopädie</title>") {
@@ -81,6 +83,6 @@ func TestEgressWildcard(t *testing.T) {
 
 		util.KubeDeleteContents("bookinfo", util.RunTemplate(EgressWildcardGatewayTemplate, smcp))
 	})
-
+        
 	// setup SNI proxy for wildcard arbitrary domains
 }

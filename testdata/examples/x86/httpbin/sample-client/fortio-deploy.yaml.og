@@ -33,8 +33,8 @@ spec:
     spec:
       containers:
       - name: fortio
-        image: quay.io/erable/fortio
-        imagePullPolicy: IfNotPresent
+        image: fortio/fortio:latest_release
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
           name: http-fortio

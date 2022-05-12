@@ -1,0 +1,364 @@
+time="2022-05-12T04:23:51-04:00" level=info msg="Running command oc new-project istio-system"
+time="2022-05-12T04:23:51-04:00" level=info msg="Running command kubectl apply -n istio-system -f /tmp/kubeapply122950981.yaml"
+time="2022-05-12T04:23:51-04:00" level=info msg="Command output: \nservicemeshcontrolplane.maistra.io/istio-system unchanged"
+time="2022-05-12T04:23:51-04:00" level=info msg="Running command kubectl apply -n istio-system -f /tmp/kubeapply803898848.yaml"
+time="2022-05-12T04:23:52-04:00" level=info msg="Command output: \nservicemeshmemberroll.maistra.io/default unchanged"
+=== RUN   T2
+time="2022-05-12T04:24:25-04:00" level=info msg=TestFaultInjection
+time="2022-05-12T04:24:25-04:00" level=info msg="Deploying Bookinfo"
+time="2022-05-12T04:24:25-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/bookinfo.yaml"
+time="2022-05-12T04:24:27-04:00" level=info msg="Command output: \nservice/details created\nserviceaccount/bookinfo-details created\ndeployment.apps/details-v1 created\nservice/ratings created\nserviceaccount/bookinfo-ratings created\ndeployment.apps/ratings-v1 created\nservice/reviews created\nserviceaccount/bookinfo-reviews created\ndeployment.apps/reviews-v1 created\ndeployment.apps/reviews-v2 created\ndeployment.apps/reviews-v3 created\nservice/productpage created\nserviceaccount/bookinfo-productpage created\ndeployment.apps/productpage-v1 created"
+time="2022-05-12T04:24:32-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=details -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:24:32-04:00" level=info msg="Command output: \ndetails-v1-6cd699df8c-dbmp7"
+time="2022-05-12T04:24:32-04:00" level=info msg="app=details pod name: details-v1-6cd699df8c-dbmp7"
+time="2022-05-12T04:24:32-04:00" level=info msg="Running command kubectl -n bookinfo get pods details-v1-6cd699df8c-dbmp7 --no-headers"
+time="2022-05-12T04:24:33-04:00" level=info msg="Command output: \ndetails-v1-6cd699df8c-dbmp7   0/2   ContainerCreating   0     34s"
+time="2022-05-12T04:24:33-04:00" level=info msg="details-v1-6cd699df8c-dbmp7 in namespace bookinfo is not running: ContainerCreating"
+time="2022-05-12T04:25:03-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=details -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:25:03-04:00" level=info msg="Command output: \ndetails-v1-6cd699df8c-dbmp7"
+time="2022-05-12T04:25:03-04:00" level=info msg="app=details pod name: details-v1-6cd699df8c-dbmp7"
+time="2022-05-12T04:25:03-04:00" level=info msg="Running command kubectl -n bookinfo get pods details-v1-6cd699df8c-dbmp7 --no-headers"
+time="2022-05-12T04:25:03-04:00" level=info msg="Command output: \ndetails-v1-6cd699df8c-dbmp7   2/2   Running   0     65s"
+time="2022-05-12T04:25:03-04:00" level=info msg="Got the pod name=app=details running!"
+time="2022-05-12T04:25:03-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:25:03-04:00" level=info msg="Command output: \nratings-v1-bdbcc68bc-jt4dq"
+time="2022-05-12T04:25:03-04:00" level=info msg="app=ratings pod name: ratings-v1-bdbcc68bc-jt4dq"
+time="2022-05-12T04:25:03-04:00" level=info msg="Running command kubectl -n bookinfo get pods ratings-v1-bdbcc68bc-jt4dq --no-headers"
+time="2022-05-12T04:25:04-04:00" level=info msg="Command output: \nratings-v1-bdbcc68bc-jt4dq   2/2   Running   0     36s"
+time="2022-05-12T04:25:04-04:00" level=info msg="Got the pod name=app=ratings running!"
+time="2022-05-12T04:25:04-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=reviews,version=v1 -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:25:04-04:00" level=info msg="Command output: \nreviews-v1-754ddd7b6f-8nqpr"
+time="2022-05-12T04:25:04-04:00" level=info msg="app=reviews,version=v1 pod name: reviews-v1-754ddd7b6f-8nqpr"
+time="2022-05-12T04:25:04-04:00" level=info msg="Running command kubectl -n bookinfo get pods reviews-v1-754ddd7b6f-8nqpr --no-headers"
+time="2022-05-12T04:25:04-04:00" level=info msg="Command output: \nreviews-v1-754ddd7b6f-8nqpr   2/2   Running   0     65s"
+time="2022-05-12T04:25:04-04:00" level=info msg="Got the pod name=app=reviews,version=v1 running!"
+time="2022-05-12T04:25:04-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=reviews,version=v2 -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:25:05-04:00" level=info msg="Command output: \nreviews-v2-675679877f-cxl5l"
+time="2022-05-12T04:25:05-04:00" level=info msg="app=reviews,version=v2 pod name: reviews-v2-675679877f-cxl5l"
+time="2022-05-12T04:25:05-04:00" level=info msg="Running command kubectl -n bookinfo get pods reviews-v2-675679877f-cxl5l --no-headers"
+time="2022-05-12T04:25:05-04:00" level=info msg="Command output: \nreviews-v2-675679877f-cxl5l   2/2   Running   0     66s"
+time="2022-05-12T04:25:05-04:00" level=info msg="Got the pod name=app=reviews,version=v2 running!"
+time="2022-05-12T04:25:05-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=reviews,version=v3 -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:25:05-04:00" level=info msg="Command output: \nreviews-v3-79d7549c7-j2r7g"
+time="2022-05-12T04:25:05-04:00" level=info msg="app=reviews,version=v3 pod name: reviews-v3-79d7549c7-j2r7g"
+time="2022-05-12T04:25:05-04:00" level=info msg="Running command kubectl -n bookinfo get pods reviews-v3-79d7549c7-j2r7g --no-headers"
+time="2022-05-12T04:25:05-04:00" level=info msg="Command output: \nreviews-v3-79d7549c7-j2r7g   2/2   Running   0     39s"
+time="2022-05-12T04:25:05-04:00" level=info msg="Got the pod name=app=reviews,version=v3 running!"
+time="2022-05-12T04:25:05-04:00" level=info msg="Running command kubectl -n bookinfo get pod -l app=productpage -o jsonpath='{.items[0].metadata.name}'"
+time="2022-05-12T04:25:06-04:00" level=info msg="Command output: \nproductpage-v1-5ddcb4b84f-l4bvq"
+time="2022-05-12T04:25:06-04:00" level=info msg="app=productpage pod name: productpage-v1-5ddcb4b84f-l4bvq"
+time="2022-05-12T04:25:06-04:00" level=info msg="Running command kubectl -n bookinfo get pods productpage-v1-5ddcb4b84f-l4bvq --no-headers"
+time="2022-05-12T04:25:06-04:00" level=info msg="Command output: \nproductpage-v1-5ddcb4b84f-l4bvq   2/2   Running   0     65s"
+time="2022-05-12T04:25:06-04:00" level=info msg="Got the pod name=app=productpage running!"
+time="2022-05-12T04:25:06-04:00" level=info msg="Creating Gateway"
+time="2022-05-12T04:25:06-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/bookinfo-gateway.yaml"
+time="2022-05-12T04:25:07-04:00" level=info msg="Command output: \ngateway.networking.istio.io/bookinfo-gateway created\nvirtualservice.networking.istio.io/bookinfo created"
+time="2022-05-12T04:25:07-04:00" level=info msg="Creating destination rules all"
+time="2022-05-12T04:25:07-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/destination-rule-all.yaml"
+time="2022-05-12T04:25:08-04:00" level=info msg="Command output: \ndestinationrule.networking.istio.io/productpage created\ndestinationrule.networking.istio.io/reviews created\ndestinationrule.networking.istio.io/ratings created\ndestinationrule.networking.istio.io/details created"
+time="2022-05-12T04:25:28-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/virtual-service-all-v1.yaml"
+time="2022-05-12T04:25:29-04:00" level=info msg="Command output: \nvirtualservice.networking.istio.io/productpage created\nvirtualservice.networking.istio.io/reviews created\nvirtualservice.networking.istio.io/ratings created\nvirtualservice.networking.istio.io/details created"
+time="2022-05-12T04:25:29-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/virtual-service-reviews-test-v2.yaml"
+time="2022-05-12T04:25:29-04:00" level=info msg="Command output: \nvirtualservice.networking.istio.io/reviews configured"
+=== RUN   T2/TrafficManagement_injecting_an_HTTP_delay_fault
+time="2022-05-12T04:25:34-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/virtual-service-ratings-test-delay.yaml"
+time="2022-05-12T04:25:35-04:00" level=info msg="Command output: \nvirtualservice.networking.istio.io/ratings configured"
+time="2022-05-12T04:25:50-04:00" level=info msg="bookinfo productpage returned in 10019 ms"
+    common.go:37: Didn't get expected response.. Error @@ -1,130 +1 @@
+        -<!DOCTYPE html>
+        -<html>
+        -  <head>
+        -    <title>Simple Bookstore App</title>
+        -<meta charset="utf-8">
+        -<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        -<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        -
+        -<!-- Latest compiled and minified CSS -->
+        -<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+        -
+        -<!-- Optional theme -->
+        -<link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        -
+        -  </head>
+        -  <body>
+        -    
+        -    
+        -
+        -<nav class="navbar navbar-inverse navbar-static-top">
+        -  <div class="container">
+        -    <div class="navbar-header">
+        -      <a class="navbar-brand" href="#">BookInfo Sample</a>
+        -    </div>
+        -    
+        -    <p class="navbar-text navbar-right">
+        -      <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+        -      <span style="padding-left: 5px;">jason ( <a href="logout">sign out</a> )</span>
+        -    </p>
+        -    
+        -  </div>
+        -</nav>
+        -
+        -<!---
+        -<div class="navbar navbar-inverse navbar-fixed-top">
+        -  <div class="container">
+        -    <div class="navbar-header pull-left">
+        -      <a class="navbar-brand" href="#">Microservices Fabric BookInfo Demo</a>
+        -    </div>
+        -    <div class="navbar-header pull-right">
+        -      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        -        <span class="icon-bar"></span>
+        -        <span class="icon-bar"></span>
+        -        <span class="icon-bar"></span>
+        -      </button>
+        -    </div>
+        -    <div class="navbar-collapse collapse">
+        -
+        -      <a href="logout"><button type="button" class="btn btn-default navbar-btn pull-right">Sign out</button></a>
+        -      <p class="navbar-text pull-right">Signed in as jason</p>
+        -
+        -    </div>
+        -  </div>
+        -</div>
+        --->
+        -
+        -<div id="login-modal" class="modal fade" role="dialog">
+        -  <div class="modal-dialog">
+        -    <div class="modal-content">
+        -      <div class="modal-header">
+        -        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        -        <h4 class="modal-title">Please sign in</h4>
+        -      </div>
+        -      <div class="modal-body">
+        -        <form method="post" action='login' name="login_form">
+        -          <p><input type="text" class="form-control" name="username" id="username" placeholder="User Name"></p>
+        -          <p><input type="password" class="form-control" name="passwd" placeholder="Password"></p>
+        -          <p>
+        -            <button type="submit" class="btn btn-primary">Sign in</button>
+        -            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        -          </p>
+        -        </form>
+        -      </div>
+        -    </div>
+        -
+        -  </div>
+        -</div>
+        -
+        -<div class="container-fluid">
+        -  <div class="row">
+        -    <div class="col-md-12">
+        -      <h3 class="text-center text-primary">The Comedy of Errors</h3>
+        -      
+        -      <p>Summary: <a href="https://en.wikipedia.org/wiki/The_Comedy_of_Errors">Wikipedia Summary</a>: The Comedy of Errors is one of <b>William Shakespeare's</b> early plays. It is his shortest and one of his most farcical comedies, with a major part of the humour coming from slapstick and mistaken identity, in addition to puns and word play.</p>
+        -      
+        -    </div>
+        -  </div>
+        -
+        -  <div class="row">
+        -    <div class="col-md-6">
+        -      
+        -      <h4 class="text-center text-primary">Book Details</h4>
+        -      <dl>
+        -        <dt>Type:</dt>paperback
+        -        <dt>Pages:</dt>200
+        -        <dt>Publisher:</dt>PublisherA
+        -        <dt>Language:</dt>English
+        -        <dt>ISBN-10:</dt>1234567890
+        -        <dt>ISBN-13:</dt>123-1234567890
+        -      </dl>
+        -      
+        -    </div>
+        -
+        -    <div class="col-md-6">
+        -      
+        -      <h4 class="text-center text-primary">Error fetching product reviews!</h4>
+        -      
+        -      <p>Sorry, product reviews are currently unavailable for this book.</p>
+        -      
+        -      
+        -    </div>
+        -  </div>
+        -</div>
+        -
+        -
+        -    
+        -<!-- Latest compiled and minified JavaScript -->
+        -<script src="static/jquery.min.js"></script>
+        -
+        -<!-- Latest compiled and minified JavaScript -->
+        -<script src="static/bootstrap/js/bootstrap.min.js"></script>
+        -
+        -<script type="text/javascript">
+        -  $('#login-modal').on('shown.bs.modal', function () {
+        -    $('#username').focus();
+        -  });
+        -</script>
+        -
+        -  </body>
+        -</html>
+        +upstream connect error or disconnect/reset before headers. reset reason: local reset
+=== RUN   T2/TrafficManagement_injecting_an_HTTP_abort_fault
+time="2022-05-12T04:25:50-04:00" level=info msg="Running command kubectl apply -n bookinfo -f ../testdata/examples/x86/bookinfo/virtual-service-ratings-test-abort.yaml"
+time="2022-05-12T04:25:51-04:00" level=info msg="Command output: \nvirtualservice.networking.istio.io/ratings configured"
+time="2022-05-12T04:26:06-04:00" level=info msg="bookinfo productpage returned in 10009 ms"
+    common.go:37: Didn't get expected response.. Error @@ -1,148 +1 @@
+        -<!DOCTYPE html>
+        -<html>
+        -  <head>
+        -    <title>Simple Bookstore App</title>
+        -<meta charset="utf-8">
+        -<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        -<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        -
+        -<!-- Latest compiled and minified CSS -->
+        -<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+        -
+        -<!-- Optional theme -->
+        -<link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        -
+        -  </head>
+        -  <body>
+        -    
+        -    
+        -
+        -<nav class="navbar navbar-inverse navbar-static-top">
+        -  <div class="container">
+        -    <div class="navbar-header">
+        -      <a class="navbar-brand" href="#">BookInfo Sample</a>
+        -    </div>
+        -    
+        -    <p class="navbar-text navbar-right">
+        -      <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+        -      <span style="padding-left: 5px;">jason ( <a href="logout">sign out</a> )</span>
+        -    </p>
+        -    
+        -  </div>
+        -</nav>
+        -
+        -<!---
+        -<div class="navbar navbar-inverse navbar-fixed-top">
+        -  <div class="container">
+        -    <div class="navbar-header pull-left">
+        -      <a class="navbar-brand" href="#">Microservices Fabric BookInfo Demo</a>
+        -    </div>
+        -    <div class="navbar-header pull-right">
+        -      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        -        <span class="icon-bar"></span>
+        -        <span class="icon-bar"></span>
+        -        <span class="icon-bar"></span>
+        -      </button>
+        -    </div>
+        -    <div class="navbar-collapse collapse">
+        -
+        -      <a href="logout"><button type="button" class="btn btn-default navbar-btn pull-right">Sign out</button></a>
+        -      <p class="navbar-text pull-right">Signed in as jason</p>
+        -
+        -    </div>
+        -  </div>
+        -</div>
+        --->
+        -
+        -<div id="login-modal" class="modal fade" role="dialog">
+        -  <div class="modal-dialog">
+        -    <div class="modal-content">
+        -      <div class="modal-header">
+        -        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        -        <h4 class="modal-title">Please sign in</h4>
+        -      </div>
+        -      <div class="modal-body">
+        -        <form method="post" action='login' name="login_form">
+        -          <p><input type="text" class="form-control" name="username" id="username" placeholder="User Name"></p>
+        -          <p><input type="password" class="form-control" name="passwd" placeholder="Password"></p>
+        -          <p>
+        -            <button type="submit" class="btn btn-primary">Sign in</button>
+        -            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        -          </p>
+        -        </form>
+        -      </div>
+        -    </div>
+        -
+        -  </div>
+        -</div>
+        -
+        -<div class="container-fluid">
+        -  <div class="row">
+        -    <div class="col-md-12">
+        -      <h3 class="text-center text-primary">The Comedy of Errors</h3>
+        -      
+        -      <p>Summary: <a href="https://en.wikipedia.org/wiki/The_Comedy_of_Errors">Wikipedia Summary</a>: The Comedy of Errors is one of <b>William Shakespeare's</b> early plays. It is his shortest and one of his most farcical comedies, with a major part of the humour coming from slapstick and mistaken identity, in addition to puns and word play.</p>
+        -      
+        -    </div>
+        -  </div>
+        -
+        -  <div class="row">
+        -    <div class="col-md-6">
+        -      
+        -      <h4 class="text-center text-primary">Book Details</h4>
+        -      <dl>
+        -        <dt>Type:</dt>paperback
+        -        <dt>Pages:</dt>200
+        -        <dt>Publisher:</dt>PublisherA
+        -        <dt>Language:</dt>English
+        -        <dt>ISBN-10:</dt>1234567890
+        -        <dt>ISBN-13:</dt>123-1234567890
+        -      </dl>
+        -      
+        -    </div>
+        -
+        -    <div class="col-md-6">
+        -      
+        -      <h4 class="text-center text-primary">Book Reviews</h4>
+        -      
+        -      <blockquote>
+        -        <p>An extremely entertaining play by Shakespeare. The slapstick humour is refreshing!</p>
+        -        <small>Reviewer1</small>
+        -        
+        -        
+        -        <p><i>Ratings service is currently unavailable</i></p>
+        -        
+        -        
+        -      </blockquote>
+        -      
+        -      <blockquote>
+        -        <p>Absolutely fun and entertaining. The play lacks thematic depth when compared to other plays by Shakespeare.</p>
+        -        <small>Reviewer2</small>
+        -        
+        -        
+        -        <p><i>Ratings service is currently unavailable</i></p>
+        -        
+        -        
+        -      </blockquote>
+        -      
+        -      
+        -    </div>
+        -  </div>
+        -</div>
+        -
+        -
+        -    
+        -<!-- Latest compiled and minified JavaScript -->
+        -<script src="static/jquery.min.js"></script>
+        -
+        -<!-- Latest compiled and minified JavaScript -->
+        -<script src="static/bootstrap/js/bootstrap.min.js"></script>
+        -
+        -<script type="text/javascript">
+        -  $('#login-modal').on('shown.bs.modal', function () {
+        -    $('#username').focus();
+        -  });
+        -</script>
+        -
+        -  </body>
+        -</html>
+        +upstream connect error or disconnect/reset before headers. reset reason: local reset
+time="2022-05-12T04:26:06-04:00" level=info msg=Cleanup
+time="2022-05-12T04:26:06-04:00" level=info msg="Running command kubectl delete -n bookinfo -f ../testdata/examples/x86/bookinfo/virtual-service-all-v1.yaml"
+time="2022-05-12T04:26:06-04:00" level=info msg="Cleanup Bookinfo"
+time="2022-05-12T04:26:06-04:00" level=info msg="Running command kubectl delete -n bookinfo -f ../testdata/examples/x86/bookinfo/destination-rule-all.yaml"
+time="2022-05-12T04:26:07-04:00" level=info msg="Running command kubectl delete -n bookinfo -f ../testdata/examples/x86/bookinfo/bookinfo-gateway.yaml"
+time="2022-05-12T04:26:07-04:00" level=info msg="Running command kubectl delete -n bookinfo -f ../testdata/examples/x86/bookinfo/bookinfo.yaml"
+--- FAIL: T2 (133.20s)
+    --- FAIL: T2/TrafficManagement_injecting_an_HTTP_delay_fault (15.85s)
+    --- FAIL: T2/TrafficManagement_injecting_an_HTTP_abort_fault (15.88s)
+FAIL
+exit status 1
+FAIL	github.com/maistra/maistra-test-tool/tests	168.066s

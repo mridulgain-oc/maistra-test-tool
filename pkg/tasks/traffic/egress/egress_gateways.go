@@ -79,7 +79,7 @@ func TestEgressGateways(t *testing.T) {
 		util.KubeDeleteContents("bookinfo", ExServiceEntry)
 		time.Sleep(time.Duration(20) * time.Second)
 	})
-
+        
 	t.Run("TrafficManagement_egress_gateway_for_https_traffic", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 
@@ -111,4 +111,5 @@ func TestEgressGateways(t *testing.T) {
 			util.Log.Infof("Success. Get https://istio.io response: %s", msg)
 		}
 	})
+        
 }

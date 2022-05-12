@@ -33,7 +33,7 @@ func cleanupRequestRouting() {
 }
 
 func TestRequestRouting(t *testing.T) {
-	defer cleanupRequestRouting()
+        defer cleanupRequestRouting()
 	defer util.RecoverPanic(t)
 
 	util.Log.Info("TestRequestRouting")
@@ -66,7 +66,7 @@ func TestRequestRouting(t *testing.T) {
 				t)
 		}
 	})
-
+        
 	t.Run("TrafficManagement_route_based_on_user_identity", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 

@@ -41,7 +41,7 @@ func TestEgressTLSOrigination(t *testing.T) {
 	sleep.Install()
 	sleepPod, err := util.GetPodName("bookinfo", "app=sleep")
 	util.Inspect(err, "Failed to get sleep pod name", "", t)
-
+        
 	t.Run("TrafficManagement_egress_configure_access_to_external_service", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 
@@ -59,7 +59,7 @@ func TestEgressTLSOrigination(t *testing.T) {
 			t.Errorf("Error response: %s", msg)
 		}
 	})
-
+        
 	t.Run("TrafficManagement_egress_tls_origination", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 

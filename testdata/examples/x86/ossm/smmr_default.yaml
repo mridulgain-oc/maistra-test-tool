@@ -9,4 +9,4 @@ spec:
   - bookinfo
   - foo
   - bar
-  - legacy
+  #- legacy

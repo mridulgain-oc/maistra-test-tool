@@ -1,4 +1,4 @@
-# Copyright 2017 Istio Authors
+# Copyright Red Hat, Inc.
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -12,61 +12,47 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-##################################################################################################
-# Sleep service
-##################################################################################################
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: sleep
+  name: redis
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sleep
+  name: redis
   labels:
-    app: sleep
+    app: redis
 spec:
   ports:
-  - port: 80
-    name: http
+  - port: 6379
+    name: redis-port
   selector:
-    app: sleep
+    app: redis
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sleep
+  name: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sleep
+      app: redis
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: "false"
       labels:
-        app: sleep
+        app: redis
     spec:
       terminationGracePeriodSeconds: 0
-      serviceAccountName: sleep
+      serviceAccountName: redis
       containers:
-      - name: sleep
-        #env:
-        #- name: http_proxy
-        #  value: http://proxy.esl.cisco.com:80
-        #- name: https_proxy
-        #  value: http://proxy.esl.cisco.com:80
-        image: curlimages/curl
-        command: ["/bin/sleep", "3650d"]
+      - name: redis
+        image: redis:6.2
         imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/sleep/tls
-          name: secret-volume
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: sleep-secret
-          optional: true
+        ports:
+        - containerPort: 6379
+
 ---

@@ -102,7 +102,7 @@ func TestTLSOriginationFileMount(t *testing.T) {
 
 	nginx := examples.Nginx{"bookinfo"}
 	nginx.Install("../testdata/examples/x86/nginx/nginx_ssl.conf")
-
+        
 	t.Run("TrafficManagement_egress_gateway_perform_TLS_origination", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 
@@ -139,7 +139,7 @@ func TestTLSOriginationFileMount(t *testing.T) {
 		util.KubeDeleteContents("bookinfo", ExServiceEntry)
 		time.Sleep(time.Duration(20) * time.Second)
 	})
-
+        
 	t.Run("TrafficManagement_egress_gateway_perform_MTLS_origination", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 

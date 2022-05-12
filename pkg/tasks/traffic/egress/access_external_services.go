@@ -34,7 +34,7 @@ func cleanupAccessExternalServices() {
 }
 
 func TestAccessExternalServices(t *testing.T) {
-	defer cleanupAccessExternalServices()
+	//defer cleanupAccessExternalServices()
 	defer util.RecoverPanic(t)
 
 	util.Log.Info("TestAccessExternalServices")
@@ -58,7 +58,7 @@ func TestAccessExternalServices(t *testing.T) {
 			t.Errorf("Error response: %s", msg)
 		}
 	})
-
+        /*
 	t.Run("TrafficManagement_egress_controlled_access_to_external_httpbin_services", func(t *testing.T) {
 		defer util.RecoverPanic(t)
 
@@ -109,4 +109,5 @@ func TestAccessExternalServices(t *testing.T) {
 			t.Errorf("Error response code: %s", msg)
 		}
 	})
+        */
 }
