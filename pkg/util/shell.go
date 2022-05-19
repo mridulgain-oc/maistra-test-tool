@@ -129,6 +129,13 @@ func ShellSilent(format string, args ...interface{}) (string, error) {
 	return sh(context.Background(), format, false, false, false, args...)
 }
 
+func ShellCiscoProxied(format string, args ...interface{}) (string, error) {
+	setProxy := `export http_proxy=http://proxy.esl.cisco.com:80; export https_proxy=http://proxy.esl.cisco.com:80;`
+	unsetProxy := `;unset http_proxy; unset https_proxy;`
+	cmd := setProxy + format + unsetProxy
+	return sh(context.Background(), cmd, true, true, true, args...)
+}
+
 func sh(ctx context.Context, format string, logCommand, logOutput, logError bool, args ...interface{}) (string, error) {
 	command := fmt.Sprintf(format, args...)
 	if logCommand {
