@@ -30,11 +30,11 @@ spec:
     spec:
       containers:
       - name: my-nginx
-        env:
-        - name: http_proxy
-          value: http://proxy.esl.cisco.com:80
-        - name: https_proxy
-          value: http://proxy.esl.cisco.com:80
+        #env:
+        #- name: http_proxy
+        #  value: http://proxy.esl.cisco.com:80
+        #- name: https_proxy
+        #  value: http://proxy.esl.cisco.com:80
         #image: docker.io/library/nginx:latest
         image: noiro-quay.cisco.com/noiro/nginx:latest 
         imagePullPolicy: IfNotPresent
