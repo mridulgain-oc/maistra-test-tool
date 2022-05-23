@@ -29,6 +29,7 @@ func cleanupAccessExternalServices() {
 	util.KubeDeleteContents("bookinfo", httpbinextTimeout)
 	util.KubeDeleteContents("bookinfo", redhatextServiceEntry)
 	util.KubeDeleteContents("bookinfo", httbinextServiceEntry)
+	util.KubeDeleteContents("bookinfo", CiscoProxy)
 	sleep.Uninstall()
 	time.Sleep(time.Duration(20) * time.Second)
 }

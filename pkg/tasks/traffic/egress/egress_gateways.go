@@ -30,6 +30,7 @@ func cleanupEgressGateways() {
 	util.KubeDeleteContents("bookinfo", util.RunTemplate(ExGatewayTemplate, smcp))
 	util.KubeDeleteContents("bookinfo", ExServiceEntryTLS)
 	util.KubeDeleteContents("bookinfo", ExServiceEntry)
+	util.KubeDeleteContents("bookinfo", CiscoProxy)
 	sleep.Uninstall()
 	time.Sleep(time.Duration(20) * time.Second)
 }
