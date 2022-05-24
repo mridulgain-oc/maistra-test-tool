@@ -25,7 +25,7 @@ import (
 func cleanupSingleClusterFedDiffCert() {
 	util.Log.Info("Cleanup ...")
 	util.Shell(`kubectl -n mesh1-system delete secret cacerts`)
-	util.Shell(`pushd ../testdata/examples/federation \
+	util.BashShell(`pushd ../testdata/examples/federation \
 			&& export MESH1_KUBECONFIG=~/.kube/config \
 			&& export MESH2_KUBECONFIG=~/.kube/config \
 			&& ./cleanup.sh`)
@@ -40,7 +40,7 @@ func TestSingleClusterFedDiffCert(t *testing.T) {
 		util.Log.Info("Test federation install in a single cluster")
 		util.Log.Info("Reference: https://github.com/maistra/istio/blob/maistra-2.1/pkg/servicemesh/federation/example/config-poc/install.sh")
 		util.Log.Info("Running install_diff_cert.sh waiting 1 min...")
-		util.Shell(`pushd ../testdata/examples/federation \
+		util.BashShell(`pushd ../testdata/examples/federation \
 			&& export MESH1_KUBECONFIG=~/.kube/config \
 			&& export MESH2_KUBECONFIG=~/.kube/config \
 			&& ./install_diff_cert.sh`)

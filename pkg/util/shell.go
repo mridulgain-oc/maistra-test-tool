@@ -106,6 +106,10 @@ func Shell(format string, args ...interface{}) (string, error) {
 	return sh(context.Background(), format, true, true, true, args...)
 }
 
+func BashShell(format string, args ...interface{}) (string, error) {
+	return bash(context.Background(), format, true, true, true, args...)
+}
+
 // ShellContext run command on shell and get back output and error if get one
 func ShellContext(ctx context.Context, format string, args ...interface{}) (string, error) {
 	return sh(ctx, format, true, true, true, args...)
@@ -142,6 +146,28 @@ func sh(ctx context.Context, format string, logCommand, logOutput, logError bool
 		Log.Infof("Running command %s", command)
 	}
 	c := exec.CommandContext(ctx, "sh", "-c", command) // #nosec
+	bytes, err := c.CombinedOutput()
+	if logOutput {
+		if output := strings.TrimSuffix(string(bytes), "\n"); len(output) > 0 {
+			Log.Infof("Command output: \n%s", output)
+		}
+	}
+
+	if err != nil {
+		if logError {
+			Log.Infof("Command error: %v", err)
+		}
+		return string(bytes), fmt.Errorf("command failed: %q %v", string(bytes), err)
+	}
+	return string(bytes), nil
+}
+
+func bash(ctx context.Context, format string, logCommand, logOutput, logError bool, args ...interface{}) (string, error) {
+	command := fmt.Sprintf(format, args...)
+	if logCommand {
+		Log.Infof("Running command %s", command)
+	}
+	c := exec.CommandContext(ctx, "bash", "-c", command) // #nosec
 	bytes, err := c.CombinedOutput()
 	if logOutput {
 		if output := strings.TrimSuffix(string(bytes), "\n"); len(output) > 0 {
